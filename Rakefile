@@ -202,7 +202,14 @@ namespace :docs do
     ### extra_args = "-t simp_#{version}" if version
     cmd = "sphinx-build -E -n #{extra_args} -b html -d sphinx_cache docs html"
     puts "== #{cmd}"
-    %x(#{cmd} > /dev/null)
+    #%x(#{cmd} > /dev/null)
+		puts "Gonna do some revsere stuff here"
+		num_columns = Dir["docs/security_mapping/components/*"].length
+		nist = 'docs/security_mapping/controls/nist80053rev4/800-53-controls.rst'
+		column1 = File.readlines("#{nist}").select { |column1| column1 =~ /\.\.._/ }
+		puts "#{column1}"
+		puts "#{num_columns}"
+		
   end
 
   desc 'build HTML docs (single page)'
